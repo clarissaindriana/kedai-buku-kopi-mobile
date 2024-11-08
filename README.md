@@ -73,3 +73,87 @@ Variable yang terdampak:
 **Jelaskan perbedaan antara const dengan final**
 - Waktu Inisialisasi: final bisa diinisialisasi pada runtime, sedangkan const harus diinisialisasi pada compile-time.
 - Immutabilitas: Objek const adalah sepenuhnya immutable, sedangkan objek final hanya memiliki referensi yang immutable (isi dapat berubah jika objek memungkinkan).
+
+
+## Tugas 8
+
+### Implementasi Flutter Navigation, Layouts, Forms, and Input Elements
+1. Menambahkan Drawer Menu Untuk Navigasi
+- Membuat direktori baru bernama widgets di subdirektori lib/. Kemudian, membuat berkas dengan nama left_drawer.dart
+- Tambahkan impor untuk halaman-halaman yang ingin dimasukkan navigasinya ke dalam Drawer Menu
+- Memasukkan routing untuk halaman-halaman yang diimpor
+Navigator.pop(context); // Menutup drawer
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProductEntryFormPage(),
+                ),
+              );
+- Menghias drawer dengan memasukkan drawer header di TODO: Bagian drawer header
+- Memasukka drawer ke halaman yang diinginkan
+// Masukkan drawer sebagai parameter nilai drawer dari widget Scaffold
+      drawer: const LeftDrawer(),
+
+2. Menambahkan Form dan Elemen Input
+- Membuat berkas baru pada direktori lib dengan nama productentry_form.dart
+- Secara keseluruhan, menambahkan kerangka dasar untuk membuat halaman form entri
+- Ubah widget Placeholder
+- Membuat struktur dasar halaman form dengan material design ( Siap untuk menampung form fields yang bisa di-scroll, sudah memiliki styling dasar (warna primary untuk app bar dan teks putih), siap untuk ditambahkan drawer)
+- Membuat variabel baru bernama _formKey dengan nilai GlobalKey<FormState>(); lalu tambahkan _formKey tersebut ke dalam atribut key milik widget Form. Atribut key akan berfungsi sebagai handler dari form state, validasi form, dan penyimpanan form.
+- Mengisi widget Form dengan field. Membuat beberapa variabel untuk menyimpan input dari masing-masing field yang akan dibuat.
+- Membuat form field untuk masing masing field/variable (berisi validasi beserta UI/UX)
+- Buatlah tombol sebagai child selanjutnya dari Column. Bungkus tombol ke dalam widget Padding dan Align. Tombol belum untuk menyimpan data ke database (hanya untuk memunculkan pop-up)
+
+3. Memunculkan Data
+- Menambahkan fungsi showDialog() pada bagian onPressed() dari potongan kode yang sebelumnya ditambahkan. Lalu memunculkan widget AlertDialog pada fungsi tersebut. 
+
+4. Menambahkan Fitur Navigasi pada Tombol​
+- Buat agar kode yang terletak pada atribut onTap dari InkWell dapat melakukan navigasi ke route lain
+
+### SOAL
+**Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?**
+1. Kegunaan const di Flutter:
+- Immutability: Menggunakan const membuat suatu nilai atau objek tidak bisa diubah setelah diinisialisasi.
+- Performance: Objek yang dibuat dengan const di Flutter tidak dibuat ulang setiap kali aplikasi dibangun ulang
+
+2. Keuntungan menggunakan const:
+- Optimasi Performa: Karena objek const tidak perlu dibuat ulang, aplikasi dapat berjalan lebih cepat dan lebih responsif.
+- Kode yang Lebih Bersih dan Mudah Dibaca: Menggunakan const secara eksplisit menunjukkan bahwa nilai atau objek tersebut tidak akan berubah
+
+3. Kapan Menggunakan const:
+- Widget yang Tidak Berubah: Gunakan const untuk widget atau nilai yang tidak berubah setelah diinisialisasi
+
+4. Kapan Tidak Menggunakan const:
+- Nilai yang Berubah: Jika nilai objek perlu diubah pada runtime
+- Objek dengan Konstruktor yang Membutuhkan Logika atau Perhitungan: Jika konstruktor sebuah objek melakukan perhitungan atau memiliki logika yang harus dijalankan
+
+**Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!**
+1. Penggunaan Column:
+- Column digunakan untuk mengatur widget secara vertikal.
+- Anak-anak dari Column disusun dari atas ke bawah.
+- Sangat berguna untuk membuat tampilan yang elemen-elemennya ditumpuk secara vertikal, seperti formulir atau daftar.
+
+2. Penggunaan Row:
+- Row digunakan untuk mengatur widget secara horizontal.
+- Anak-anak dari Row disusun dari kiri ke kanan.
+- Cocok untuk membuat tampilan yang memerlukan elemen-elemen berdampingan, seperti toolbar atau status bar.
+
+**Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!**
+TextFormField untuk Nama: Mengumpulkan nama produk.
+TextFormField untuk Harga: Mengumpulkan harga produk dalam bentuk numerik.
+TextFormField untuk Deskripsi: Mengumpulkan deskripsi produk.
+TextFormField untuk Rating: Mengumpulkan rating produk dalam bentuk numerik.
+TextFormField untuk Pairing: Mengumpulkan informasi tentang pairing produk.
+
+Elemen Input Flutter Lain yang Tidak Digunakan: DropdownButtonFormField, CheckboxListTile, RadioListTile, SwitchListTile, Slider, Date & Time Pickers, dll
+
+**Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?**
+Dapat mendefinisikan tema aplikasi di dalam MaterialApp widget menggunakan properti theme. Tema ini akan secara otomatis diterapkan ke semua widget dalam aplikasi yang mendukung theming. Kita dapat mengakses tema yang telah ditetapkan menggunakan Theme.of(context). Ini memungkinkan kita untuk menggunakan warna, font, dan style lain yang telah didefinisikan di tema.
+
+Ya, saya mengimplementasikannya melalui main.dart
+
+**Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?**
+1. Navigasi Dasar dengan Navigator.push dan Navigator.pop
+2. Named Routes
+- Mendefinisikan routes di dalam MaterialApp dan menggunakan nama untuk navigasi
+3. Nested Navigators

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kedai_buku_kopi_mobile/menu.dart';
+import 'package:kedai_buku_kopi_mobile/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
