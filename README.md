@@ -161,31 +161,78 @@ Ya, saya mengimplementasikannya melalui main.dart
 ## Tugas 9
 ### Implementasi Flutter Networking, Authentication, and Integration
 1.Django Berjalan dengan Baik
-Mengonfigurasi ALLOWED_HOSTS, menambahkan konfigurasi CORS, dan memastikan bahwa database dan aplikasi sudah terhubung dengan benar.
+- Mengonfigurasi ALLOWED_HOSTS, menambahkan konfigurasi CORS, dan memastikan bahwa database dan aplikasi sudah terhubung dengan benar.
 
 2. Mengimplementasikan Fitur Registrasi Akun pada Proyek Tugas Flutter
-Membuat form registrasi dengan TextFormField di Flutter untuk menginput data seperti username, password, dan confirm password.
-Mengonfigurasi onPressed pada tombol registrasi untuk mengirim data ke server Django melalui API menggunakan http request.
-Setelah data diterima oleh server, server memverifikasi apakah username sudah ada dan apakah password sesuai. Jika berhasil, menampilkan pesan sukses di aplikasi Flutter.
-Menangani kasus error seperti password yang tidak cocok atau username yang sudah terdaftar dengan menampilkan pesan error yang sesuai.
+-Membuat form registrasi dengan TextFormField di Flutter untuk menginput data seperti username, password, dan confirm password.
+-Mengonfigurasi onPressed pada tombol registrasi untuk mengirim data ke server Django melalui API menggunakan http request.
+-Setelah data diterima oleh server, server memverifikasi apakah username sudah ada dan apakah password sesuai. Jika berhasil, menampilkan pesan sukses di aplikasi Flutter.
+-Menangani kasus error seperti password yang tidak cocok atau username yang sudah terdaftar dengan menampilkan pesan error yang sesuai.
 3. Membuat Halaman Login pada Proyek Tugas Flutter
-Halaman login menggunakan TextFormField untuk input username dan password.
-Data dimasukkan dikirim ke server Django menggunakan http request untuk memverifikasi kredensial.
-Menyimpan status login di Flutter menggunakan Provider atau SharedPreferences agar pengguna tetap terautentikasi saat aplikasi digunakan kembali.
-Halaman ini juga menangani kesalahan seperti password atau username yang tidak cocok dengan memberikan pesan error di Flutter.
+-Halaman login menggunakan TextFormField untuk input username dan password.
+-Data dimasukkan dikirim ke server Django menggunakan http request untuk memverifikasi kredensial.
+-Menyimpan status login di Flutter menggunakan Provider atau SharedPreferences agar pengguna tetap terautentikasi saat aplikasi digunakan kembali.
+-Halaman ini juga menangani kesalahan seperti password atau username yang tidak cocok dengan memberikan pesan error di Flutter.
 4. Mengintegrasikan Sistem Autentikasi Django dengan Proyek Tugas Flutter
-Mengimpor pbp_django_auth untuk memudahkan integrasi autentikasi antara Django dan Flutter.
-Menggunakan CookieRequest untuk menyimpan cookie atau token autentikasi setelah pengguna berhasil login. Setiap request berikutnya akan mengirimkan cookie ini untuk memastikan bahwa pengguna tetap terautentikasi.
-Memastikan bahwa pengguna hanya dapat mengaksesnya jika mereka sudah login dengan memeriksa status login melalui Provider atau CookieRequest.
+-Mengimpor pbp_django_auth untuk memudahkan integrasi autentikasi antara Django dan Flutter.
+-Menggunakan CookieRequest untuk menyimpan cookie atau token autentikasi setelah pengguna berhasil login. Setiap request berikutnya akan mengirimkan cookie ini untuk memastikan bahwa pengguna tetap terautentikasi.
+-Memastikan bahwa pengguna hanya dapat mengaksesnya jika mereka sudah login dengan memeriksa status login melalui Provider atau CookieRequest.
 5. Membuat Model Kustom Sesuai dengan Proyek Aplikasi Django
-Membuat model di Django untuk item yang berisi informasi seperti name, price, description, dan atribut lainnya.
-Di Flutter, buat model dengan nama yang sesuai yang mencerminkan struktur data yang dikirimkan oleh server Django.
-Menggunakan fromJson dan toJson di Flutter untuk mengonversi data JSON dari API ke dalam objek Dart yang sesuai dan sebaliknya.
+-Membuat model di Django untuk item yang berisi informasi seperti name, price, description, dan atribut lainnya.
+-Di Flutter, buat model dengan nama yang sesuai yang mencerminkan struktur data yang dikirimkan oleh server Django.
+-Menggunakan fromJson dan toJson di Flutter untuk mengonversi data JSON dari API ke dalam objek Dart yang sesuai dan sebaliknya.
 6. Membuat Halaman Daftar Semua Item dari Endpoint JSON di Django
-Menggunakan FutureBuilder di Flutter untuk menampilkan data yang diambil dari server Django menggunakan API.
-Memanggil API untuk mengambil data item dengan menggunakan http.get dan kemudian mengonversi respons JSON ke dalam model ProductEntry yang sudah dibuat.
-Setiap product ditampilkan dengan atribut pada halaman daftar.
+-Menggunakan FutureBuilder di Flutter untuk menampilkan data yang diambil dari server Django menggunakan API.
+-Memanggil API untuk mengambil data item dengan menggunakan http.get dan kemudian mengonversi respons JSON ke dalam model ProductEntry yang sudah dibuat.
+-Setiap product ditampilkan dengan atribut pada halaman daftar.
 7. Membuat Halaman Detail untuk Setiap Item pada Halaman Daftar Item
-Ketika item pada halaman daftar ditekan, mengarahkan pengguna ke halaman detail menggunakan Navigator.push().
-Di halaman detail, ditampilkan semua atribut product
+-Ketika item pada halaman daftar ditekan, mengarahkan pengguna ke halaman detail menggunakan Navigator.push().
+-Di halaman detail, ditampilkan semua atribut product
 
+### SOAL
+**Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?**
+Membuat model untuk mengelola data JSON sangat dianjurkan karena membantu dalam validasi data, mengurangi kesalahan pengkodean, memudahkan pemeliharaan dan pembaruan kode, serta memanfaatkan fitur seperti autocomplete dan intellisense. Meskipun tidak selalu menyebabkan error, tidak menggunakan model dapat meningkatkan risiko kesalahan runtime dan membuat kode lebih sulit untuk dikelola. Oleh karena itu, penggunaan model sangat disarankan untuk efisiensi dan keamanan dalam pengembangan perangkat lunak.
+
+**Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini**
+Library http digunakan untuk melakukan komunikasi dengan server melalui protokol HTTP. Fungsi utamanya meliputi pengambilan data (GET), pengiriman data (POST), serta pengelolaan respons dari server. Library ini mempermudah integrasi antara Flutter dan backend seperti Django dalam pertukaran data.
+
+**Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter**
+`CookieRequest` dalam konteks pengembangan aplikasi, khususnya yang menggunakan Flutter, biasanya merujuk pada mekanisme untuk mengelola cookie dalam permintaan HTTP. Fungsi utamanya adalah untuk menyimpan dan mengirimkan informasi seperti sesi pengguna atau preferensi di antara permintaan HTTP ke server. Membagikan instance `CookieRequest` ke semua komponen di aplikasi Flutter penting karena memungkinkan pengelolaan state sesi yang konsisten di seluruh aplikasi, memastikan bahwa setiap komponen yang membuat permintaan ke server dapat secara otomatis menyertakan data cookie yang relevan. Ini membantu dalam autentikasi pengguna, mempertahankan preferensi, dan menyediakan pengalaman pengguna yang lebih kohesif.
+
+**Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.**
+1. **Input Data**: Proses dimulai ketika pengguna memasukkan data melalui widget input seperti `TextField`. Pengguna memasukkan data yang kemudian disimpan dalam state aplikasi atau dikirim langsung untuk diproses.
+
+2. **Pengelolaan State**: Flutter menggunakan konsep state untuk mengelola data. State ini bisa dikelola secara lokal dalam widget menggunakan `StatefulWidget`, atau menggunakan provider state management seperti `Provider`, `Bloc`, atau `Riverpod`. Data input tersebut dikelola dan di-update dalam state sesuai dengan interaksi pengguna.
+
+3. **Pengiriman Data**: Setelah data diinput dan diolah, data tersebut seringkali perlu dikirim ke server atau database eksternal. Ini biasanya dilakukan menggunakan HTTP request. Flutter menyediakan paket seperti `http` untuk membuat permintaan HTTP. Data yang diinput oleh pengguna dikirim sebagai bagian dari body request (biasanya dalam format JSON).
+
+4. **Penerimaan dan Pengolahan Data**: Server menerima data, memprosesnya sesuai dengan logika bisnis yang didefinisikan (misalnya, menyimpan data ke database), dan kemudian mengirimkan respons kembali ke aplikasi Flutter. Respons ini bisa berupa konfirmasi, data baru yang dihasilkan, atau update dari server.
+
+5. **Deserialisasi dan Update UI**: Setelah aplikasi Flutter menerima respons dari server, data tersebut biasanya perlu di-deserialisasi dari format JSON ke model data dalam Dart. Setelah deserialisasi, aplikasi akan memperbarui UI berdasarkan data baru yang diterima. Ini bisa melibatkan pembaruan state yang akan memicu rebuild widget atau update UI secara langsung.
+
+6. **Tampilan pada UI**: Akhirnya, data yang telah diproses dan dikelola ditampilkan pada UI menggunakan widget Flutter. Data bisa ditampilkan dalam berbagai bentuk seperti teks, daftar, grafik, dll.
+
+**Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter**
+Mekanisme autentikasi yang melibatkan aplikasi Flutter sebagai frontend dan Django sebagai backend biasanya mengikuti langkah-langkah berikut:
+
+1. Registrasi Pengguna
+- **Input Data**: Dalam aplikasi Flutter, pengguna mengisi form registrasi dengan detail seperti email, username, dan password.
+- **Pengiriman Data**: Data tersebut dikirim ke server Django menggunakan HTTP POST request, biasanya melalui API endpoint seperti `/api/register/`.
+- **Pengolahan di Django**: Django menerima data, memvalidasi input, dan menyimpan data pengguna baru di database. Django juga bisa mengatur mekanisme seperti konfirmasi email.
+- **Respons ke Flutter**: Setelah berhasil, Django mengirim respons ke Flutter, yang bisa berupa status berhasil atau pesan error jika ada masalah.
+
+2. Login Pengguna
+- **Input Data**: Pengguna memasukkan kredensial login (username dan password) di Flutter.
+- **Pengiriman Data**: Flutter mengirimkan data ini ke Django melalui HTTP POST request ke endpoint seperti `/api/login/`.
+- **Autentikasi di Django**: Django memproses permintaan, memverifikasi kredensial dengan data yang tersimpan di database. Jika berhasil, Django menghasilkan token (misalnya JWT) dan mengirimkannya kembali ke Flutter.
+- **Set Token di Flutter**: Flutter menerima token dan menyimpannya, biasanya di local storage atau secure storage, untuk digunakan dalam autentikasi API selanjutnya.
+
+3. Akses Konten yang Terproteksi
+- **Pengiriman Request dengan Token**: Setiap kali Flutter perlu mengakses data yang terproteksi, ia mengirimkan token autentikasi dalam header request.
+- **Validasi Token di Django**: Django memvalidasi token pada setiap request terproteksi. Jika token valid, Django memproses request dan mengirimkan data yang diminta.
+- **Update UI di Flutter**: Data yang diterima dari Django digunakan untuk memperbarui UI, menampilkan informasi yang relevan kepada pengguna.
+
+4. Logout
+- **Aksi Logout di Flutter**: Pengguna memilih untuk logout, dan Flutter menghapus token dari storage.
+- **Pengiriman Notifikasi ke Django**: Flutter bisa secara opsional memberitahu Django tentang logout untuk memungkinkan server melakukan tindakan seperti membatalkan token.
+- **Update UI**: Flutter mengembalikan pengguna ke layar login atau halaman awal, menghapus semua sesi atau data pengguna yang tersimpan di state.
