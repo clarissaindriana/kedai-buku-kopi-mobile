@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kedai_buku_kopi_mobile/screens/list_productentry.dart';
 import 'package:kedai_buku_kopi_mobile/screens/menu.dart';
-// Impor halaman ProductEntryFormPage jika sudah dibuat
 import 'package:kedai_buku_kopi_mobile/screens/productentry_form.dart';
 
 class LeftDrawer extends StatelessWidget {
@@ -28,7 +28,7 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(8)),
-                Text("Books and Coffee whom you spend your morning with!",
+                Text("Books and Coffee to spend your morning with!",
                     // Tambahkan gaya teks dengan center alignment, font ukuran 15, warna putih, dan weight biasa
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -67,6 +67,19 @@ class LeftDrawer extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => const ProductEntryFormPage(),
                 ),
+              );
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Daftar Product'),
+            onTap: () {
+              // Route menu ke halaman Product
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ProductEntryPage()),
               );
             },
           ),

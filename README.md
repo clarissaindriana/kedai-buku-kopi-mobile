@@ -157,3 +157,35 @@ Ya, saya mengimplementasikannya melalui main.dart
 2. Named Routes
 - Mendefinisikan routes di dalam MaterialApp dan menggunakan nama untuk navigasi
 3. Nested Navigators
+
+## Tugas 9
+### Implementasi Flutter Networking, Authentication, and Integration
+1.Django Berjalan dengan Baik
+Mengonfigurasi ALLOWED_HOSTS, menambahkan konfigurasi CORS, dan memastikan bahwa database dan aplikasi sudah terhubung dengan benar.
+
+2. Mengimplementasikan Fitur Registrasi Akun pada Proyek Tugas Flutter
+Membuat form registrasi dengan TextFormField di Flutter untuk menginput data seperti username, password, dan confirm password.
+Mengonfigurasi onPressed pada tombol registrasi untuk mengirim data ke server Django melalui API menggunakan http request.
+Setelah data diterima oleh server, server memverifikasi apakah username sudah ada dan apakah password sesuai. Jika berhasil, menampilkan pesan sukses di aplikasi Flutter.
+Menangani kasus error seperti password yang tidak cocok atau username yang sudah terdaftar dengan menampilkan pesan error yang sesuai.
+3. Membuat Halaman Login pada Proyek Tugas Flutter
+Halaman login menggunakan TextFormField untuk input username dan password.
+Data dimasukkan dikirim ke server Django menggunakan http request untuk memverifikasi kredensial.
+Menyimpan status login di Flutter menggunakan Provider atau SharedPreferences agar pengguna tetap terautentikasi saat aplikasi digunakan kembali.
+Halaman ini juga menangani kesalahan seperti password atau username yang tidak cocok dengan memberikan pesan error di Flutter.
+4. Mengintegrasikan Sistem Autentikasi Django dengan Proyek Tugas Flutter
+Mengimpor pbp_django_auth untuk memudahkan integrasi autentikasi antara Django dan Flutter.
+Menggunakan CookieRequest untuk menyimpan cookie atau token autentikasi setelah pengguna berhasil login. Setiap request berikutnya akan mengirimkan cookie ini untuk memastikan bahwa pengguna tetap terautentikasi.
+Memastikan bahwa pengguna hanya dapat mengaksesnya jika mereka sudah login dengan memeriksa status login melalui Provider atau CookieRequest.
+5. Membuat Model Kustom Sesuai dengan Proyek Aplikasi Django
+Membuat model di Django untuk item yang berisi informasi seperti name, price, description, dan atribut lainnya.
+Di Flutter, buat model dengan nama yang sesuai yang mencerminkan struktur data yang dikirimkan oleh server Django.
+Menggunakan fromJson dan toJson di Flutter untuk mengonversi data JSON dari API ke dalam objek Dart yang sesuai dan sebaliknya.
+6. Membuat Halaman Daftar Semua Item dari Endpoint JSON di Django
+Menggunakan FutureBuilder di Flutter untuk menampilkan data yang diambil dari server Django menggunakan API.
+Memanggil API untuk mengambil data item dengan menggunakan http.get dan kemudian mengonversi respons JSON ke dalam model ProductEntry yang sudah dibuat.
+Setiap product ditampilkan dengan atribut pada halaman daftar.
+7. Membuat Halaman Detail untuk Setiap Item pada Halaman Daftar Item
+Ketika item pada halaman daftar ditekan, mengarahkan pengguna ke halaman detail menggunakan Navigator.push().
+Di halaman detail, ditampilkan semua atribut product
+
